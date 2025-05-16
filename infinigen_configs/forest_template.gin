@@ -1,0 +1,32 @@
+# Dummy GIN config for forest_template.gin
+import infinigen.core.init
+include 'infinigen_examples/configs_nature/base_nature.gin'
+
+# Forest-specific settings
+compose_nature.trees_chance = 1.0
+compose_nature.bushes_chance = 0.8
+compose_nature.ground_leaves_chance = 0.9
+compose_nature.ground_twigs_chance = 0.8
+compose_nature.grass_chance = 0.9
+compose_nature.ferns_chance = 0.7
+compose_nature.flowers_chance = 0.3
+
+# Disable non-forest elements
+compose_nature.cactus_chance = 0.0
+compose_nature.palm_trees_chance = 0.0
+compose_nature.coconut_trees_chance = 0.0
+compose_nature.kelp_chance = 0.0
+compose_nature.corals_chance = 0.0
+compose_nature.seaweed_chance = 0.0
+
+# Add some atmosphere
+compose_nature.rain_particles_chance = 0.2
+compose_nature.leaf_particles_chance = 0.3
+compose_nature.wind_chance = 0.7
+compose_nature.turbulence_chance = 0.4
+
+# Adjust distances for forest density
+compose_nature.inview_distance = 50
+placement.populate_all.dist_cull = 50
+compose_nature.near_distance = 15
+compose_nature.center_distance = 25

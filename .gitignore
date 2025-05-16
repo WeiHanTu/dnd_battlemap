@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# Generated output - typically not version controlled
+generated_battlemaps/
+
+# Infinigen software directory - should be installed separately on target system
+# If this directory contains your project-specific configs/assets for Infinigen that
+# are NOT the main Infinigen software, remove this line.
+infinigen/
+
+# IDE-specific files
+.idea/
+*.swp
+*.swo 
