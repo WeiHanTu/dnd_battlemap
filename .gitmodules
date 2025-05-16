@@ -1,0 +1,3 @@
+[submodule "infinigen"]
+	path = infinigen
+	url = https://github.com/WeiHanTu/my-infinigen.git
