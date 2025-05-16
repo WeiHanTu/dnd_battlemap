@@ -6,7 +6,8 @@ import sys
 import shutil
 
 # --- Configuration ---
-INFINIGEN_PATH = "/Users/weihantu/PycharmProjects/conda_base/cse252D_dnd/infinigen" # Path to your Infinigen installation
+# INFINIGEN_PATH = "/Users/weihantu/PycharmProjects/conda_base/cse252D_dnd/infinigen" # Path to your Infinigen installation
+INFINIGEN_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "infinigen"))
 OUTPUT_DIR_BASE = "generated_battlemaps"
 DEFAULT_ASSET_LIBRARY = "dnd_assets" # Directory for D&D specific assets
 
