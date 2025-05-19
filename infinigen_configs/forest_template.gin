@@ -1,17 +1,31 @@
 # Dummy GIN config for forest_template.gin
 import infinigen.core.init
+
+# Attempt to aggressively disable features first
+include 'infinigen_examples/configs_nature/disable_assets/no_assets.gin'
+include 'infinigen_examples/configs_nature/disable_assets/no_landlab.gin' # Ensure landlab is off
+
+# Bring back base nature defaults (hopefully no_assets / no_landlab already disabled problematic cave/mountain systems)
 include 'infinigen_examples/configs_nature/base_nature.gin'
 
-# Forest-specific settings
-compose_nature.trees_chance = 1.0
-compose_nature.bushes_chance = 0.8
-compose_nature.ground_leaves_chance = 0.9
-compose_nature.ground_twigs_chance = 0.8
-compose_nature.grass_chance = 0.9
-compose_nature.ferns_chance = 0.7
-compose_nature.flowers_chance = 0.3
+# Our specific settings for a simple, fast forest
+# Ensure erosion is minimal (should be set by no_landlab.gin, but re-iterate)
+run_erosion.n_iters = [0,0]
 
-# Disable non-forest elements
+# scene.caves_chance = 0.0 # This will also be set by python override
+
+# Forest-specific settings - Slightly Enhanced for Visuals (but keep them modest for speed)
+compose_nature.trees_chance = 0.4
+compose_nature.bushes_chance = 0.3
+compose_nature.ground_leaves_chance = 0.4 # Will only appear if trees are generated
+compose_nature.ground_twigs_chance = 0.3 # Will only appear if trees/bushes are generated
+compose_nature.grass_chance = 0.6
+compose_nature.ferns_chance = 0.1
+compose_nature.flowers_chance = 0.05
+compose_nature.rocks_chance = 0.02
+compose_nature.boulders_chance = 0.02
+
+# Disable non-forest elements (already done, but ensure)
 compose_nature.cactus_chance = 0.0
 compose_nature.palm_trees_chance = 0.0
 compose_nature.coconut_trees_chance = 0.0
@@ -19,14 +33,34 @@ compose_nature.kelp_chance = 0.0
 compose_nature.corals_chance = 0.0
 compose_nature.seaweed_chance = 0.0
 
-# Add some atmosphere
-compose_nature.rain_particles_chance = 0.2
-compose_nature.leaf_particles_chance = 0.3
-compose_nature.wind_chance = 0.7
-compose_nature.turbulence_chance = 0.4
+# Atmosphere (keep off for speed, can be enabled by python override if needed)
+compose_nature.atmosphere_chance = 0.0
+compose_nature.volumetric_clouds_chance = 0.0 # part of atmosphere
+compose_nature.wind_chance = 0.0
+compose_nature.turbulence_chance = 0.0
+compose_nature.rain_particles_chance = 0.0
+compose_nature.leaf_particles_chance = 0.0
 
-# Adjust distances for forest density
-compose_nature.inview_distance = 50
-placement.populate_all.dist_cull = 50
-compose_nature.near_distance = 15
-compose_nature.center_distance = 25
+# Ensure terrain itself is on, but other complex features that might be implicitly
+# enabled by base_nature are reiterated to be simple/off if not covered by no_assets.
+compose_nature.terrain_enabled = True
+compose_nature.coarse_terrain_enabled = True # part of terrain_enabled usually
+compose_nature.terrain_surface_enabled = True # part of terrain_enabled usually
+
+# Ensure snowfall is off (should be covered by python overrides but good defense)
+ant_landscape_asset.snowfall = 0
+multi_mountains_asset.snowfall = 0
+coast_asset.snowfall = 0
+# get_land_process.snowfall_enabled = 0 # This is a function, not a direct gin param
+populate_scene.snow_layer_chance = 0.0
+
+# Drastically reduce distances for smallest possible scene
+compose_nature.inview_distance = 10
+placement.populate_all.dist_cull = 10
+compose_nature.near_distance = 2
+compose_nature.center_distance = 5
+
+# If there are specific parameters to reduce cave/mountain generation counts/complexity,
+# they would ideally be placed here or in overrides.
+# e.g., some_module.max_caves = 1
+# e.g., some_module.mountain_complexity = 0.1
