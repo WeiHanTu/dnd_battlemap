@@ -8,3 +8,42 @@ __pycache__/
 generated_battlemaps/
 *.ipynb_checkpoints
 .idea/
+
+# Generated files
+generated_battlemaps/
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Infinigen specific
+infinigen/outputs/
+infinigen/logs/
+infinigen/cache/
+ 
